@@ -12,8 +12,7 @@ export default class Guess extends React.Component {
 
 	onSubmit(event){
 		event.preventDefault();
-		const theNum = this.textInput.value.trim();
-		console.log('text input: '+theNum);
+		const theNum = this.textInput.value.trim();		
 		if (theNum && this.props.onEnter){
 			this.props.onEnter(theNum);
 		}

@@ -19,8 +19,7 @@ export default class Main extends React.Component {
 	addHistory(number){
 		this.setState({
 			history : [...this.state.history, number]
-		});
-		console.log('history: '+this.state.history);
+		});		
 	}
 
 	countUp(){
@@ -41,20 +40,33 @@ export default class Main extends React.Component {
 		});
 	}
 
-	render(){
+	render(){		
+		const guessForm = <Guess onEnter={value => this.tried(value)}/>;
+		if(this.state.answer === this.state.guess){
+			return(
+				<div className='WholePage'>
+					<h1> HOT or COLD </h1>
+					<div className='game'>
+						<Temperature  answer={this.state.answer} 
+						guess={this.state.guess}/>						
+						<Count counter={this.state.counter} />
+						<History history={this.state.history} />
+					</div>
+				</div>
+			);
+		}
 		return(
 			<div className='WholePage'>
 				<h1> HOT or COLD </h1>
 				<div className='game'>
 					<Temperature  answer={this.state.answer} 
 					guess={this.state.guess}/>
-					<Guess onEnter={value => 
-						this.tried(value)}/>
+					{guessForm}
 					<Count counter={this.state.counter} />
 					<History history={this.state.history} />
 				</div>
 			</div>
 		);
 	}
-	
+	//{this.state.guess === this.state.answer ? <div></div> : guessForm}
 }

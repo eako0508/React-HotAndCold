@@ -11,7 +11,7 @@ export default class Main extends React.Component {
 		this.state = {
 			history: [],
 			counter: 0,
-			answer: 36,
+			answer: Math.floor(Math.random(Date.now())*100%100),
 			guess: 0
 		}
 	}
@@ -28,8 +28,7 @@ export default class Main extends React.Component {
 		});
 	}
 
-	tried(number){
-		
+	tried(number){		
 		this.countUp();
 		this.addHistory(number);
 		this.updateGuess(number);
@@ -42,6 +41,8 @@ export default class Main extends React.Component {
 
 	render(){		
 		const guessForm = <Guess onEnter={value => this.tried(value)}/>;
+		console.log();
+		//when user guessed the answer, hide form
 		if(this.state.answer === this.state.guess){
 			return(
 				<div className='WholePage'>
@@ -55,6 +56,8 @@ export default class Main extends React.Component {
 				</div>
 			);
 		}
+
+		//default, show form to submit guess.
 		return(
 			<div className='WholePage'>
 				<h1> HOT or COLD </h1>
@@ -67,6 +70,5 @@ export default class Main extends React.Component {
 				</div>
 			</div>
 		);
-	}
-	//{this.state.guess === this.state.answer ? <div></div> : guessForm}
+	}	
 }

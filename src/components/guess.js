@@ -6,7 +6,8 @@ export default class Guess extends React.Component {
 	constructor(props){
 		super(props);
 		this.state = {
-
+			answer: (props.answer).toString(),
+			guess: 0
 		}
 	}
 
@@ -16,10 +17,22 @@ export default class Guess extends React.Component {
 		if (theNum && this.props.onEnter){
 			this.props.onEnter(theNum);
 		}
+		this.updateGuess(theNum);
 		this.textInput.value = '';
 	}
 
-	render(){
+	updateGuess(guess){
+		this.setState({
+			guess
+		});
+	}
+
+	render(){		
+		console.log(this.state.answer);
+		
+		if(this.state.answer === this.state.guess){
+			return (<div></div>);
+		}
 		return (
 			<form onSubmit={(e)=>this.onSubmit(e)}>
 				<input type='text' name='userGuess' id='userGuess'
@@ -27,11 +40,9 @@ export default class Guess extends React.Component {
 				placeholder='Enter your Guess' 
 				ref={input => this.textInput = input} required />
 				<input type="submit" id="guessButton" 
-				className="button" name="submit" value="Guess" 
-				
+				className="button" name="submit" value="Guess" 				
 				/>
 			</form>
 		);		
-	}
-	
+	}	
 }

@@ -20,6 +20,5 @@ export default function Temperature(props){
 		}
 	}
 
-
-	return (<h2>{wording}</h2>);
+	return (<h2 className='wording-h2'>{wording}</h2>);
 }

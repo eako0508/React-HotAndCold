@@ -31,10 +31,10 @@ export default class Guess extends React.Component {
 		console.log(this.state.answer);
 		
 		if(this.state.answer === this.state.guess){
-			return (<div></div>);
+			return (<div className='emptyDiv'></div>);
 		}
 		return (
-			<form onSubmit={(e)=>this.onSubmit(e)}>
+			<form className='guess-form' onSubmit={(e)=>this.onSubmit(e)}>
 				<input type='text' name='userGuess' id='userGuess'
 				className='text' maxLength='3' autoComplete='off'
 				placeholder='Enter your Guess' 
